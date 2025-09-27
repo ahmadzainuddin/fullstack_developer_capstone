@@ -1,9 +1,23 @@
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | Best Cars</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <style>
+    .team { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; padding: 1.5rem 0; }
+    .team .card { width: 18rem; }
+    .banner { padding: 2rem 1rem; text-align: center; }
+    .banner h1 { margin-bottom: .5rem; }
+    .about-copy { max-width: 900px; margin: 0 auto; padding: 0 1rem 1.5rem; color: #444; }
+  </style>
   <!-- Link the style sheet here -->
+  <!-- Provided above: style.css and bootstrap.min.css -->
+  
 </head>
-<div>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; min-height: 1in;">
     <div class="container-fluid">
       <h2 style="padding-right: 5%;">Dealerships</h2>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +29,7 @@
             <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" style="font-size: larger;" href="/about">About Us</a>
+            <a class="nav-link active" style="font-size: larger;" href="/about/">About Us</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" style="font-size: larger;" href="/contact">Contact Us</a>
@@ -24,45 +38,50 @@
       </div>
     </div>
   </nav>
-  
-    <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
-      <div class="banner" name="about-header">
-      <!-- Insert header information here -->
-      </div>
-      <div style="display: flex;flex-direction: row; margin:auto">
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
+
+  <div class="card" style="width: 80%; margin: auto; margin-top: 5%;">
+    <div class="banner" name="about-header">
+      <h1>About Us</h1>
+      Welcome to Best Cars dealership, home to the best cars in North America. We deal in sale of domestic and imported cars at reasonable prices.
+    </div>
+
+    <div class="about-copy">
+      <p>Best Cars is a customer-first dealership built on transparency, selection, and service. Our team brings decades of combined experience to help you find the right vehicle at the right price — with no pressure and no surprises.</p>
+      <p>From brand-new models to certified pre-owned vehicles, every car is inspected and backed by a comprehensive warranty. Our finance experts partner with top lenders to offer competitive rates and flexible terms for every credit profile.</p>
+    </div>
+
+    <div class="team">
+      <div class="card">
+        <img class="card-img-top" src="https://i.pravatar.cc/300?img=12" alt="Photo of Ava Thompson">
         <div class="card-body">
-          <p class="title">Person1</p>
-          <p>Person1 Title</p>
-          <p class="card-text">Some text that explains the person1 in about 2 short sentences</p>
-          <p>person1@example.com</p>
+          <p class="title">Ava Thompson</p>
+          <p>General Manager</p>
+          <p class="card-text">Ava leads our dealership with a focus on exceptional service and a seamless buying experience.</p>
+          <p>ava.thompson@bestcars.com</p>
         </div>
       </div>
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
+      <div class="card">
+        <img class="card-img-top" src="https://i.pravatar.cc/300?img=34" alt="Photo of Ethan Brooks">
         <div class="card-body">
-          <p class="title">Person2</p>
-          <p>Person2 Title</p>
-          <p class="card-text">Some text that explains the person2 in about 2 short sentences</p>
-          <p>person2@example.com</p>
+          <p class="title">Ethan Brooks</p>
+          <p>Finance Manager</p>
+          <p class="card-text">Ethan helps customers secure competitive financing tailored to their needs and budget.</p>
+          <p>ethan.brooks@bestcars.com</p>
         </div>
       </div>
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
+      <div class="card">
+        <img class="card-img-top" src="https://i.pravatar.cc/300?img=56" alt="Photo of Maya Patel">
         <div class="card-body">
-          <p class="title">Person3</p>
-          <p>Person3 Title</p>
-          <p class="card-text">Some text that explains the person3 in about 2 short sentences</p>
-          <p>person3@example.com</p>
+          <p class="title">Maya Patel</p>
+          <p>Service Advisor</p>
+          <p class="card-text">Maya ensures your vehicle stays in peak condition with friendly, expert guidance.</p>
+          <p>maya.patel@bestcars.com</p>
         </div>
       </div>
     </div>
-    </div>
-    </div>
-    
-</div>
+  </div>
 
+</body>
 </html>
