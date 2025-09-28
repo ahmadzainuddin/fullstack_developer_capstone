@@ -25,29 +25,41 @@ const Dealer = () => {
   let post_review = root_url+`postreview/${id}`;
   
   const get_dealer = async ()=>{
-    const res = await fetch(dealer_url, {
-      method: "GET"
-    });
-    const retobj = await res.json();
-    
-    if(retobj.status === 200) {
-      let dealerobjs = Array.from(retobj.dealer)
-      setDealer(dealerobjs[0])
+    try {
+      const res = await fetch(dealer_url, { method: "GET" });
+      if (!res.ok) {
+        console.error("Failed to fetch dealer", res.status);
+        return;
+      }
+      const retobj = await res.json();
+      if (retobj.status === 200) {
+        const dealerData = Array.isArray(retobj.dealer) ? retobj.dealer[0] : retobj.dealer;
+        if (dealerData) setDealer(dealerData);
+      }
+    } catch (e) {
+      console.error("Error fetching dealer", e);
     }
   }
 
   const get_reviews = async ()=>{
-    const res = await fetch(reviews_url, {
-      method: "GET"
-    });
-    const retobj = await res.json();
-    
-    if(retobj.status === 200) {
-      if(retobj.reviews.length > 0){
-        setReviews(retobj.reviews)
-      } else {
+    try {
+      const res = await fetch(reviews_url, { method: "GET" });
+      if (!res.ok) {
+        console.error("Failed to fetch reviews", res.status);
         setUnreviewed(true);
+        return;
       }
+      const retobj = await res.json();
+      if (retobj.status === 200) {
+        if (Array.isArray(retobj.reviews) && retobj.reviews.length > 0) {
+          setReviews(retobj.reviews);
+        } else {
+          setUnreviewed(true);
+        }
+      }
+    } catch (e) {
+      console.error("Error fetching reviews", e);
+      setUnreviewed(true);
     }
   }
 
@@ -71,7 +83,7 @@ return(
   <div style={{margin:"20px"}}>
       <Header/>
       <div style={{marginTop:"10px"}}>
-      <h1 style={{color:"grey"}}>{dealer.full_name}{postReview}</h1>
+      <h1 style={{color:"grey"}}>{dealer?.full_name || ''}{postReview}</h1>
       <h4  style={{color:"grey"}}>{dealer['city']},{dealer['address']}, Zip - {dealer['zip']}, {dealer['state']} </h4>
       </div>
       <div class="reviews_panel">

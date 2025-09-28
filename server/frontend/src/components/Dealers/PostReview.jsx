@@ -13,13 +13,12 @@ const PostReview = () => {
   const [date, setDate] = useState("");
   const [carmodels, setCarmodels] = useState([]);
 
-  let curr_url = window.location.href;
-  let root_url = curr_url.substring(0,curr_url.indexOf("postreview"));
+  const origin = window.location.origin;
   let params = useParams();
-  let id =params.id;
-  let dealer_url = root_url+`djangoapp/dealer/${id}`;
-  let review_url = root_url+`djangoapp/add_review`;
-  let carmodels_url = root_url+`djangoapp/get_cars`;
+  let id = params.id;
+  let dealer_url = `${origin}/djangoapp/dealer/${id}`;
+  let review_url = `${origin}/djangoapp/add_review`;
+  let carmodels_url = `${origin}/djangoapp/get_cars`;
 
   const postreview = async ()=>{
     let name = sessionStorage.getItem("firstname")+" "+sessionStorage.getItem("lastname");
@@ -76,13 +75,18 @@ const PostReview = () => {
   }
 
   const get_cars = async ()=>{
-    const res = await fetch(carmodels_url, {
-      method: "GET"
-    });
-    const retobj = await res.json();
-    
-    let carmodelsarr = Array.from(retobj.CarModels)
-    setCarmodels(carmodelsarr)
+    try {
+      const res = await fetch(carmodels_url, { method: "GET" });
+      if (!res.ok) {
+        console.error("Failed to fetch car models", res.status);
+        return;
+      }
+      const retobj = await res.json();
+      const carmodelsarr = Array.from(retobj.CarModels || []);
+      setCarmodels(carmodelsarr);
+    } catch (e) {
+      console.error("Error fetching car models", e);
+    }
   }
   useEffect(() => {
     get_dealer();
@@ -110,7 +114,7 @@ const PostReview = () => {
       </div >
 
       <div className='input_field'>
-      Car Year <input type="int" onChange={(e) => setYear(e.target.value)} max={2023} min={2015}/>
+      Car Year <input type="number" onChange={(e) => setYear(e.target.value)} max={2023} min={2015}/>
       </div>
 
       <div>
